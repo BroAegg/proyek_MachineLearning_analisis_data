@@ -1,3 +1,39 @@
+import streamlit as st
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load datasets
+daily_rentals_df = pd.read_csv('dashboard/day.csv')
+hourly_rentals_df = pd.read_csv('dashboard/hour.csv')
+
+# Helper function to convert temperature to Celsius
+def convert_temp_to_celsius(df):
+    temp_max, temp_min = 39, -8
+    df['temp_celsius'] = df['temp'] * (temp_max - temp_min) + temp_min
+    return df
+
+# Helper function to calculate rentals based on working day
+def calculate_rentals_by_working_day(df):
+    working_day_rentals = df.groupby('workingday')['cnt'].sum().reset_index()
+    working_day_rentals['workingday'] = working_day_rentals['workingday'].replace({0: 'Non-Working Day', 1: 'Working Day'})
+    return working_day_rentals
+
+# Helper function to extract yearly data
+def extract_yearly_data(df):
+    df['year'] = pd.to_datetime(df['dteday']).dt.year
+    return df
+
+# Helper function to summarize rentals by season
+def summarize_rentals_by_season(df):
+    seasonal_rentals = df.groupby('season')['cnt'].sum().reset_index()
+    seasonal_rentals['season'] = seasonal_rentals['season'].replace({1: 'Spring', 2: 'Summer', 3: 'Fall', 4: 'Winter'})
+    return seasonal_rentals.sort_values(by='cnt', ascending=False)
+
+# Streamlit app setup
+st.title("Bike Sharing Analysis Dashboard")
+
 # Sidebar configuration with interactive date filter
 with st.sidebar:
     st.header("Dashboard Settings")
