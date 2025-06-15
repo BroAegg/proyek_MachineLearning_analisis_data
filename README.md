@@ -5,7 +5,7 @@
 - Clone Repository ini
 
 ```shell
-git clone https://github.com/BroAegg/proyek_akhir_dicoding_analisis_data.git
+git clone https://github.com/BroAegg/proyek_MachineLearning_analisis_data.git
 ```
 
 - install requirements yang dibutuhkan
