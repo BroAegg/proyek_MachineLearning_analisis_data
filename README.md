@@ -22,4 +22,4 @@ streamlit run dashboard/main.py
 ```
 
 bisa juga dengan mengunjungi laman ini :
-[Bike Rental Analysis]((https://p4v9ymw9pon5udyak2k9ap.streamlit.app/))
+[Bike Rental Analysis]([(https://p4v9ymw9pon5udyak2k9ap.streamlit.app/)](https://p4v9ymw9pon5udyak2k9ap.streamlit.app/))
